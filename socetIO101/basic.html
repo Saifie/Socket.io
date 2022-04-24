@@ -1,0 +1,19 @@
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.js"
+  integrity="sha512-MgkNs0gNdrnOM7k+0L+wgiRc5aLgl74sJQKbIWegVIMvVGPc1+gc1L2oK9Wf/D9pq58eqIJAxOonYPVE5UwUFA=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+></script>
+
+<script>
+  var socket = io("http://localhost:8000", {
+    transports: ["websocket", "polling", "flashsocket"],
+  });
+
+  socket.on("connect", () => {
+    socket.on("welcome", (mes) => {
+      console.log(mes);
+    });
+  });
+  socket.emit("message", { data: "hey buddy how are you." });
+</script>
